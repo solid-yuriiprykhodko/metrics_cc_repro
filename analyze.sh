@@ -1,0 +1,1 @@
+dart run dart_code_metrics:metrics analyze test

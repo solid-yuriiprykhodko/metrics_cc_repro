@@ -18,9 +18,12 @@ void main(List<String> args) {
     3: '',
   };
 
+  // write to mutable variable -> no lint
   String? mv = m[2];
 
+  // write to final variable -> no lint
   final mf = m[2];
 
+  // pass to a function -> lint
   print(m[2]);
 }

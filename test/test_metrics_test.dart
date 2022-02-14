@@ -1,65 +1,26 @@
-// ignore_for_file: unused_element
+// ignore_for_file: unused_local_variable
 
-enum Key { a, b, c }
+void main(List<String> args) {
+  List<num> l = List.generate(10, (i) => i);
 
-class _StructWithMap {
-  final Map<Key, double> m;
+  // write to mutable variable -> no lint
+  num v = l[5];
 
-  _StructWithMap({
-    required this.m,
-  });
-}
+  // write to final variable -> no lint
+  final f = l[5];
 
-Map<Key, double> _mapMakerLintA() => const {
-      Key.a: 0.1,
-      Key.b: 0.1,
-      Key.c: 0.1,
-    };
+  // pass to a function -> lint
+  print(l[5]);
 
-Map<Key, double> _mapMakerLintB() {
-  return const {
-    Key.a: 0.1,
-    Key.b: 0.1,
-    Key.c: 0.1,
-  };
-}
-
-Map<Key, double> _mapMakerOK() {
-  const m = {
-    Key.a: 0.1,
-    Key.b: 0.1,
-    Key.c: 0.1,
+  Map<int, String> m = {
+    1: '',
+    2: '',
+    3: '',
   };
 
-  return m;
-}
+  String? mv = m[2];
 
-_StructWithMap _structMakerLintA() => _StructWithMap(
-      m: const {
-        Key.a: 0.1,
-        Key.b: 0.1,
-        Key.c: 0.1,
-      },
-    );
+  final mf = m[2];
 
-_StructWithMap _structMakerLintB() {
-  return _StructWithMap(
-    m: const {
-      Key.a: 0.1,
-      Key.b: 0.1,
-      Key.c: 0.1,
-    },
-  );
-}
-
-_StructWithMap _structMakerOK() {
-  final s = _StructWithMap(
-    m: const {
-      Key.a: 0.1,
-      Key.b: 0.1,
-      Key.c: 0.1,
-    },
-  );
-
-  return s;
+  print(m[2]);
 }
